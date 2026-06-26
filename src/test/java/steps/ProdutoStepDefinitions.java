@@ -32,7 +32,9 @@ public class ProdutoStepDefinitions {
 
     @When("realizo o cadastro do produto")
     public void cadastroProduto() {
-        response = RestAssured.given().contentType("application/json").body(body).post("https://dummyjson.com/products/add");
+        RestAssured.useRelaxedHTTPSValidation();
+
+        response = RestAssured.given().relaxedHTTPSValidation().contentType("application/json").body(body).post("https://dummyjson.com/products/add");
         System.out.println("JSON Cadastrado:");
         response.prettyPrint();
     }
